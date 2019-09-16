@@ -86,15 +86,17 @@ public List<Stock> viewStock() throws Exception{
 			}
 	 }
 	 
-	 public void updateStock(int cans) {
+	 public void updateStock(int cans) throws SQLException {
 			
 			Connection con = ConnectionUtil.getConnection();
-			String sql = "update stock set cans_avail=? ";
+			String sql = "update stock set cans_avail=? , date =current_timestamp()";
 			PreparedStatement pst = null;
+			
 			try {
 				pst = con.prepareStatement(sql);
 				pst.setInt(1,cans);
-				pst.executeUpdate();
+				int rows = pst.executeUpdate();
+				System.out.println("Rows Updated:" + rows);
 			} catch (SQLException e) {
 				
 				e.printStackTrace();

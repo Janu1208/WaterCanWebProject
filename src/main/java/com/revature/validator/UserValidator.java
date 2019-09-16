@@ -20,10 +20,6 @@ public static void passwordValidation(String userName, String password) throws E
         {
                 throw new ValidatorException("Password should be less than 15 and more than 8 characters in length.");
         }
-        if (password.indexOf(userName) > -1)
-        {
-                throw new ValidatorException("Password Should not be same as user name");
-        }
         String upperCaseChars = "(.*[A-Z].*)";
         if (!password.matches(upperCaseChars ))
         {
@@ -52,6 +48,21 @@ public static void validPhone_number(String phone_number) throws Exception
 		throw new ValidatorException("Invalid phone number");
 		
 	}
+	 String upperCaseChars = "(.*[A-Z].*)";
+     if (phone_number.matches(upperCaseChars ))
+     {
+             throw new ValidatorException("phone_number should not contain alphabet");
+     }
+     String lowerCaseChars = "(.*[a-z].*)";
+     if (phone_number.matches(lowerCaseChars ))
+     {
+             throw new ValidatorException("phone_number should not contain alphabet");
+     }
+     String specialChars = "(.*[,~,!,@,#,$,%,^,&,,(,),-,_,=,+,[,{,],},|,;,:,<,>,/,?].*$)";
+     if (phone_number.matches(specialChars ))
+     {
+             throw new ValidatorException("phone_number should notcontain special character");
+     }
 }
 public static void validName(String name) throws Exception
 {

@@ -1,6 +1,6 @@
 package com.revature.service;
 
-import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.List;
 
 
@@ -40,15 +40,20 @@ public class AdminServices {
 		System.out.println();
 		return list;
 	}
-	public int setAvailableCans()
+	public void setAvailableCans(int addCans) 
 	{
-		Stock stock=new Stock();
-		StockDAOImp sdao = new StockDAO();
+		Stock stock=null;
+		StockDAOImp dao = new StockDAO();
+       stock = dao.findavaiability();
+   int availableCans=stock.getCans_avail();
+int updateCans=availableCans+addCans;
+   try {
+	dao.updateStock(updateCans);
+} catch (SQLException e) {
+	// TODO Auto-generated catch block
+	e.printStackTrace();
+}
 		
-		sdao.availStock(cans);
-		
-		int total=stock.getCans_avail();
-		sdao.updateStock(total);
 
 		
 	}

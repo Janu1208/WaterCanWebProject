@@ -2,25 +2,46 @@
 <html>
 <head>
 <link rel="stylesheet" href="css/bootstrap.min.css">
+<script src="js/jQuery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 </head>
 <body>
 <jsp:include page="headers.jsp"></jsp:include><br>
 <script type="text/javascript">
 
-function register()
-{
-alert("Registration successfull");
-window.location.href = "login.jsp";
-}
-register(name,phone_number,password)
-{
-	var formData = "name=" +name + "&phone_number="+ phone_number +"&password="+ password;
-
-}
 function reset()
 {
 	window.location.href = "newUser.jsp";
+}
+
+function register()
+{
+	event.preventDefault();
+	var name = document.getElementById("name").value;
+	var phone_number=document.getElementById("phone_number").value;
+	var password=document.getElementById("password").value;
+	
+	var formData = "name=" +name + "&phone_number="+ phone_number +"&password="+ password;
+
+    var url = "http://localhost:8080/WaterCaneWebProject/RegServlet?" + formData;
+    console.log(url);
+    $.get(url, function(response){
+    console.log(response);
+    var data= JSON.parse(response);
+    //alert("Registration successfull");
+    
+    if ( data.errorMessage != null) {
+    	//alert("error");
+    	alert(data.errorMessage);
+    }
+    else
+    	{
+    	alert(data.message);
+    	//alert("success");
+    	//window.location.href= "ulogin.jsp";
+    	}
+       
+    });
 }
 </script>
 <%
@@ -34,7 +55,7 @@ if(errorMessage!=null){
 
 
 
-<form action="RegServlet" >
+<form onsubmit="register()">
 
 
 <label>Name:</label>

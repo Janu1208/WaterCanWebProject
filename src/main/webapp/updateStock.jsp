@@ -13,11 +13,18 @@ function reset()
 
 }
 </script>
+<%
+String errorMessage = request.getParameter("errorMessage");
+if(errorMessage!=null){
+	out.println("<font color='red'>" + errorMessage + "</font>");
+}
+%>
+<form action="UpdateStock" >
 Set Available Cans: 
 <input type="text" name="cans" placeholder="Enter the cans" required autofocus  /> <br>
-<input type="button"  value="Submit" class="btn btn-success">
+<input type="submit"  value="Submit" class="btn btn-success" >
 <input type="button"  value="Reset" class="btn btn-danger" onclick="reset()">
-
+</form>
 
 
 </body>

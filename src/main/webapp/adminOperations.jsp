@@ -15,7 +15,7 @@ function logout()
 </script>
 
 <h3>Welcome admin</h3>
-<a href="adminAvailable.jsp">Available Cans</a><br>
+<a href="availableCans.jsp">Available Cans</a><br>
 
 <a href="updateStock.jsp">Update Stock</a><br>
 <input type="button"  value="Logout" class="btn btn-primary" onclick= logout()>
