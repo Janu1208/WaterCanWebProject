@@ -28,17 +28,15 @@ function register()
     $.get(url, function(response){
     console.log(response);
     var data= JSON.parse(response);
-    //alert("Registration successfull");
     
     if ( data.errorMessage != null) {
-    	//alert("error");
     	alert(data.errorMessage);
     }
     else
     	{
     	alert(data.message);
-    	//alert("success");
-    	//window.location.href= "ulogin.jsp";
+    	alert("successfully registered");
+    	window.location.href= "ulogin.jsp";
     	}
        
     });
@@ -68,7 +66,7 @@ if(errorMessage!=null){
 <input type="password" name="password" id="password" placeholder="Enter Password"  required />
 <br/>
 
-<input type="submit"  value="Submit" class="btn btn-success" onclick "register()"/>
+<input type="submit"  value="Submit" class="btn btn-success" />
 <input type="button"  value="Reset" class="btn btn-danger" onclick="reset()">
 </form>
 </body>

@@ -1,18 +1,36 @@
 <html>
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <script src="js/bootstrap.min.js"></script>
+<script src="js/jQuery.min.js"></script>
 <body>
 <jsp:include page="headers.jsp"></jsp:include><br>
 <script type="text/javascript">
 
 function login()
 {
+	event.preventDefault();
 	var phone_number=document.getElementById("phone_number").value;
 	var password=document.getElementById("password").value;
-
-	console.log("UserService-login");
-	var formData = "phone_number="+ phone_number +"&password="+ password;
 	
+	var formData = "phone_number="+ phone_number +"&password="+ password;
+    var url = "http://localhost:8080/WaterCaneWebProject/UserLogServlet?" + formData;
+    console.log(url);
+    $.get(url, function(response){
+    console.log(response);
+    var data= JSON.parse(response);
+    
+    if ( data.errorMessage != null) {
+    	alert(data.errorMessage);
+    }
+    else
+    	{
+    	//alert(data.message);
+    	alert("Login Succesfull");
+    	window.location.href= "userOperations.jsp";
+    	}
+       
+    });
+			
 }
 </script>
 <%
@@ -27,7 +45,7 @@ if(errorMessage!=null){
         <div class="row">
             <div class="col">
 
-<form action="UserLogServlet" >
+<form onsubmit="login()" >
 	Mobile Number: 
 	<input type="text" name="phone_number" id="phone_number" placeholder="Enter phone_number" required autofocus />  
 	Password: 
