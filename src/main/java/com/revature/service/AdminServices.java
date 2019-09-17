@@ -42,11 +42,12 @@ public class AdminServices {
 	}
 	public void setAvailableCans(int addCans) 
 	{
-		Stock stock=null;
+		int update;
+	    //Stock stock=new Stock();
 		StockDAOImp dao = new StockDAO();
-       stock = dao.findavaiability();
-   int availableCans=stock.getCans_avail();
-int updateCans=availableCans+addCans;
+        update = dao.findavaiability();
+   // int availableCans=stock.getCans_avail();
+    int updateCans=addCans+update;
    try {
 	dao.updateStock(updateCans);
 } catch (SQLException e) {

@@ -11,29 +11,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 import com.revature.model.Stock;
-import com.revature.service.AdminServices;
-
-
 public class ViewStockServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        
-    
-        List<Stock> list = null;
-        
-    try {
-        AdminServices as = new AdminServices();
-        list=as.stockView();
-        
-        
-        } catch (Exception e) {
-        e.printStackTrace();
-    }
+            throws ServletException, IOException {        
+    StockController sc=new StockController();
+    List<Stock> list =sc.viewStock();
     Gson gson = new Gson();
-    String json = gson.toJson(list);
-    
+    String json = gson.toJson(list);  
     PrintWriter out = response.getWriter();
     out.println(json);
     out.flush();

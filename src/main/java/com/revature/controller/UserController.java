@@ -2,8 +2,6 @@ package com.revature.controller;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import com.revature.dao.UserDAO;
-import com.revature.dao.UserDAOImp;
 import com.revature.model.User;
 import com.revature.service.UserServices;
 

@@ -12,8 +12,8 @@ import com.revature.model.Stock;
 import com.revature.util.ConnectionUtil;
 
 public class StockDAO implements StockDAOImp {
-public  Stock findavaiability(){
-		
+public  int findavaiability(){
+	int availableStock = 0;
 		Connection con = ConnectionUtil.getConnection();
 		String sql = "select * from stock";
 		PreparedStatement pst = null;
@@ -24,7 +24,7 @@ public  Stock findavaiability(){
 			while(rs.next()) {
 				
 				stock = new Stock();
-				stock.setCans_avail(rs.getInt("cans_avail"));
+				availableStock=rs.getInt("cans_avail");
 				Date date = rs.getDate("date");
 				stock.setDate(date.toLocalDate());
 			}
@@ -34,7 +34,7 @@ public  Stock findavaiability(){
 		finally {
 			ConnectionUtil.close(con, pst);
 		}
-		return stock;
+		return availableStock;
 	}
 public List<Stock> viewStock() throws Exception{
 	

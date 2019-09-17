@@ -14,7 +14,7 @@ function logout()
 }
 </script>
 
-<h3>Welcome admin</h3>
+<h3>Welcome_Admin</h3>
 <a href="availableCans.jsp">Available Cans</a><br>
 
 <a href="updateStock.jsp">Update Stock</a><br>

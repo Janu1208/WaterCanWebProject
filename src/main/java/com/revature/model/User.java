@@ -1,9 +1,7 @@
 package com.revature.model;
 
 public class User {
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
+	
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", phone_number=" + phone_number + ", password=" + password
@@ -16,6 +14,7 @@ public class User {
 	private static int cans_avail;
 	private static int reserve_id;
 	private String status;
+	
 	
 	
 	public String getStatus() {

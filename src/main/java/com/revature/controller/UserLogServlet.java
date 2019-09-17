@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 
 
@@ -22,6 +23,8 @@ public class UserLogServlet extends HttpServlet {
         System.out.println(password);
 		UserController uc=new UserController();
         String json=uc.login(phone_number,password);
+		HttpSession session = request.getSession(false);
+		session.setAttribute("USER_ID",json);
         PrintWriter out=response.getWriter();
         out.print(json);
         out.flush();
